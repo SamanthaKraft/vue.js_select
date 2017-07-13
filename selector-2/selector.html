@@ -7,12 +7,16 @@
 </head>
 <body>
     <div id="app">
-        <div>{{searchWord}}</div>
         <input type="text" v-model="searchWord" placeholder="search employee name"/>
-        <div v-for="employee in employeeList">
+        <div v-for="employee in filteredList">
             <li >{{employee.lastname}}, ({{employee.title}})</li>
             <a v-bind:href="employee.profile" target="_blank">profile</a>
         </div>
+
+        </br>
+        Another instance of using the computed method
+        <input v-model="message"></input>
+        {{reversedMessage}}
     </div>
 </body>
 
@@ -33,17 +37,20 @@ class employee{
         el:'#app',
         data:{
             searchWord:'',
+            message: 'cow',
             employeeList:[new employee(1, 'pilot', 'Amelia','Earheart','http://ameliaearhart.com/'),
                         new employee(2, 'co-piolet', 'Manfred von', 'Richthofen', 'http://www.history.com/news/ace-of-aces-how-the-red-baron-became-wwis-most-legendary-fighter-pilot'),
                         new employee(2, 'Stewardess', 'Jemaine','Clement', 'http://www.imdb.com/name/nm1318596/')
                         ]
         },
         computed:{
-            filteredList: function(){
-                return this
-                // return this.employeeList.filter((employee)=>{
-                //     return employee.firstname.toLowerCase().includes(this.searchWord.tolowerCase())
-               // })
+            filteredList(){
+                return this.employeeList.filter((emp)=>{
+                    return emp.lastname.toLowerCase().includes(this.searchWord.toLowerCase());
+                })
+            },
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('');
             }
         }
     });
