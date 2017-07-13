@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>pmf-selector</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <scipt src="/src/main.js"></script>
+  </head>
+  <body>
+    <h2>Please click the button below to get the list of names</h2>
+            <button type="button" onclick="getList()">js get list</button>
+      <div id="showListDiv"></div>
+      </br>
+      </br>
+    <div id="vueapp">
+      <button type="button" v-on:click="getList()">vue get list</button>
+      <pmf-selector custom-json="This" custom-list=true></pmf-selector>
+      
+    </div>
+    </br>
+    <button>load list into component</button>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
